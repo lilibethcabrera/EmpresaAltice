@@ -24,5 +24,17 @@ public class Cliente extends Persona {
 	public void agregarFactura(Factura nuevaFactura) {
 		misFacturas.add(nuevaFactura);
 	}
+	public Factura buscarFacturaPorId(String id) {
+		Factura miFactura = null;
+		
+		for(Factura factura : misFacturas) {
+			if(factura.getId().equalsIgnoreCase(id)) {
+				miFactura = factura;
+				break;
+			}
+		}
+		
+		return miFactura;
+	}
 
 }

@@ -5,9 +5,9 @@ import java.util.Date;
 public class Internet extends Plan {
 	private int velocidad_subida;
 	private int velocidad_bajada;
-	public Internet(float precio_apertura, Date fecha_apertura, String tipo, float mensualidad, Cliente cliente,
+	public Internet(String id, float precio_apertura, Date fecha_apertura, String tipo, float mensualidad, Cliente cliente,
 			int velocidad_subida, int velocidad_bajada) {
-		super(precio_apertura, fecha_apertura, tipo, mensualidad, cliente);
+		super(id, precio_apertura, fecha_apertura, tipo, mensualidad, cliente);
 		this.velocidad_subida = velocidad_subida;
 		this.velocidad_bajada = velocidad_bajada;
 	}

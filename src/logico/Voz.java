@@ -6,9 +6,9 @@ public class Voz extends Plan {
 	private String numero;
 	private int minutos;
 
-	public Voz(float precio_apertura, Date fecha_apertura, String tipo, float mensualidad, Cliente cliente,
+	public Voz(String id, float precio_apertura, Date fecha_apertura, String tipo, float mensualidad, Cliente cliente,
 			String numero, int minutos) {
-		super(precio_apertura, fecha_apertura, tipo, mensualidad, cliente);
+		super(id,precio_apertura, fecha_apertura, tipo, mensualidad, cliente);
 		this.numero = numero;
 		this.minutos = minutos;
 	}

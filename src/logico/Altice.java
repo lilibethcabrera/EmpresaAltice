@@ -9,6 +9,7 @@ public class Altice {
 	private ArrayList<String> numerosActivos;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Sucursal> misSucursales;
+	private ArrayList<Empleado> misEmpleados;
 
 	public Altice() {
 		misClientes = new ArrayList<>();
@@ -16,6 +17,7 @@ public class Altice {
 		numerosActivos = new ArrayList<>();
 		misFacturas = new ArrayList<>();
 		misSucursales = new ArrayList<>();
+		misEmpleados = new ArrayList<>();
 	}
 
 	public ArrayList<Cliente> getMisClientes() {
@@ -56,6 +58,56 @@ public class Altice {
 
 	public void agregarSucursal(Sucursal sucursal) {
 		misSucursales.add(sucursal);
+	}
+	
+	public Empleado buscarEmpleadoPorCedula(String cedula) {
+		Empleado miEmpleado = null;
+		
+		for(Empleado empleado : misEmpleados) {
+			if(empleado.getCedula().equalsIgnoreCase(cedula)) {
+				miEmpleado = empleado;
+				break;
+			}
+		}
+		
+		return miEmpleado;
+	}
+	
+	public Cliente buscarClientePorCedula(String cedula) {
+		Cliente miCliente = null;
+		
+		for(Cliente cliente : misClientes) {
+			if(cliente.getCedula().equalsIgnoreCase(cedula)) {
+				miCliente = cliente;
+				break;
+			}
+		}
+		
+		return miCliente;
+	}
+	public Plan buscarPlanPorId(String Id) {
+		Plan miPlan = null;
+		
+		for(Plan plan: misPlanes) {
+			if(plan.getId().equalsIgnoreCase(Id)) {
+				miPlan = plan;
+				break;
+			}
+		}
+		
+		return miPlan;
+	}
+	public Factura buscarFacturaPorId(String id) {
+		Factura miFactura = null;
+		
+		for(Factura factura : misFacturas) {
+			if(factura.getId().equalsIgnoreCase(id)) {
+				miFactura = factura;
+				break;
+			}
+		}
+		
+		return miFactura;
 	}
 
 }
