@@ -2,7 +2,7 @@ package logico;
 
 import java.util.Date;
 
-public class Empleado extends Persona {
+public abstract class Empleado extends Persona {
 	protected Date fechaContratacion;
 	protected float salario;
 	protected String telefono;
