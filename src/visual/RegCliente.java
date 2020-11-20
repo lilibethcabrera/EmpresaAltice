@@ -35,13 +35,14 @@ public class RegCliente extends JDialog {
 	private JButton btnCancelar;
 	private Cliente miCliente;
 	private JSpinner spnFechaNacimiento = new JSpinner();
-	
+	private String cedulaVieja; //En caso de que la cedula cambie al modificar
 
 	public RegCliente(Cliente cliente) {
 		if(cliente == null) {
 			setTitle("Registrar Cliente");
 		}else {
 			setTitle("Modificar Cliente");
+			cedulaVieja = cliente.getCedula();
 		}
 		miCliente = cliente;
 		setBounds(100, 100, 477, 256);
@@ -111,7 +112,7 @@ public class RegCliente extends JDialog {
 								cliente.setDireccion(txtDireccion.getText());
 								cliente.setNombre(txtNombre.getText());
 								cliente.setFechaNacimiento((Date) spnFechaNacimiento.getValue());
-								Altice.getInstance().modificarCliente(cliente);
+								Altice.getInstance().modificarCliente(cliente, cedulaVieja);
 								ListCliente.loadClientes();
 								dispose();
 							}

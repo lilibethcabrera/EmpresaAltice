@@ -38,6 +38,12 @@ public class Altice {
 		misClientes.add(cliente);
 	}
 
+	public ArrayList<Empleado> getMisEmpleados() {
+		return misEmpleados;
+	}
+	public void agregarEmpleado(Empleado empleado) {
+		misEmpleados.add(empleado);
+	}
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
@@ -113,11 +119,25 @@ public class Altice {
 		return -1;
 
 	}
-	public void modificarCliente(Cliente client) {
-		int aux = indiceClientePorCedula(client.getCedula());
+	public void modificarCliente(Cliente client, String cedulaVieja) {
+		int aux = indiceClientePorCedula(cedulaVieja);
 		misClientes.set(aux, client);
 	
 		
+	}
+	public void modificarEmpleado(Empleado empleado, String cedulaVieja) {
+		int aux = indiceEmpleadoPorCedula(cedulaVieja);
+		misEmpleados.set(aux, empleado);
+		
+	}
+	public int indiceEmpleadoPorCedula(String selecte) {
+		int i;
+		for(i = 0; i < misEmpleados.size(); i++) {
+			if(misEmpleados.get(i).getCedula().equalsIgnoreCase(selecte)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }
