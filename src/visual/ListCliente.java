@@ -54,6 +54,8 @@ public class ListCliente extends JDialog {
 							btnModificar.setEnabled(true);
 							if(Altice.getInstance().getMisClientes().get(index).getCantFacturasActivas() == 0) {
 								btnEliminar.setEnabled(true);
+							}else {
+								btnEliminar.setEnabled(false);
 							}
 							selecte = table.getValueAt(index, 0).toString();
 						}
@@ -76,10 +78,10 @@ public class ListCliente extends JDialog {
 				btnModificar.setEnabled(false);
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					//	Cliente client = Altice.getInstance().buscarClienteByCedula(selecte);
-					//	RegCliente modClient = new RegCliente(client);
-					//	modClient.setModal(true);
-					//	modClient.setVisible(true);
+					Cliente client = Altice.getInstance().buscarClientePorCedula(selecte);
+					RegCliente modClient = new RegCliente(client);
+					modClient.setModal(true);
+					modClient.setVisible(true);
 						
 					}
 				});
@@ -92,7 +94,7 @@ public class ListCliente extends JDialog {
 							Cliente cliente = Altice.getInstance().buscarClientePorCedula(selecte);
 							 int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Cliente: " + cliente.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
 							  if(option == JOptionPane.OK_OPTION){
-								  Altice.getInstance().getMisClientes().remove(Altice.getInstance().indiceClientePorCedula(selecte));
+								Altice.getInstance().getMisClientes().remove(Altice.getInstance().indiceClientePorCedula(selecte));
 								JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 								loadClientes();
 							    btnEliminar.setEnabled(false);

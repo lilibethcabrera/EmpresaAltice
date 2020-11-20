@@ -2,6 +2,8 @@ package logico;
 
 import java.util.ArrayList;
 
+import logico.Cliente;
+
 public class Altice {
 	
 	private ArrayList<Cliente> misClientes;
@@ -110,6 +112,12 @@ public class Altice {
 		}
 		return -1;
 
+	}
+	public void modificarCliente(Cliente client) {
+		int aux = indiceClientePorCedula(client.getCedula());
+		misClientes.set(aux, client);
+	
+		
 	}
 
 }

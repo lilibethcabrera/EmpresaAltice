@@ -37,8 +37,13 @@ public class RegCliente extends JDialog {
 	private JSpinner spnFechaNacimiento = new JSpinner();
 	
 
-	public RegCliente() {
-		setTitle("Registrar Empleado");
+	public RegCliente(Cliente cliente) {
+		if(cliente == null) {
+			setTitle("Registrar Cliente");
+		}else {
+			setTitle("Modificar Cliente");
+		}
+		miCliente = cliente;
 		setBounds(100, 100, 477, 256);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Datos Generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -92,14 +97,26 @@ public class RegCliente extends JDialog {
 						if(txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtDireccion.getText().isEmpty()) {
 							JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
 						}else {
-							String cedula = txtCedula.getText();
-							String nombre = txtNombre.getText();
-							String direccion = txtDireccion.getText();
-							Date fechaDeNacimiento = (Date) spnFechaNacimiento.getValue();
-							Cliente miCliente = new Cliente(cedula,nombre,direccion, fechaDeNacimiento);
-							Altice.getInstance().agregarCliente(miCliente);
-							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-							clean();
+							if(cliente == null) {
+								String cedula = txtCedula.getText();
+								String nombre = txtNombre.getText();
+								String direccion = txtDireccion.getText();
+								Date fechaDeNacimiento = (Date) spnFechaNacimiento.getValue();
+								Cliente miCliente = new Cliente(cedula,nombre,direccion, fechaDeNacimiento);
+								Altice.getInstance().agregarCliente(miCliente);
+								JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+								clean();
+							}else {
+								cliente.setCedula(txtCedula.getText());
+								cliente.setDireccion(txtDireccion.getText());
+								cliente.setNombre(txtNombre.getText());
+								cliente.setFechaNacimiento((Date) spnFechaNacimiento.getValue());
+								Altice.getInstance().modificarCliente(cliente);
+								ListCliente.loadClientes();
+								dispose();
+							}
+
+							
 						}
 					}
 				});
@@ -117,12 +134,32 @@ public class RegCliente extends JDialog {
 				btnCancelar.setActionCommand("Cancel");
 				buttonPane.add(btnCancelar);
 			}
+			if(miCliente != null) {
+				loadClient();
+			}
 		}
 	}
+	private void loadClient() {
+		txtCedula.setText(miCliente.getCedula());
+		txtDireccion.setText(miCliente.getDireccion());
+		txtNombre.setText(miCliente.getNombre());
+		
+		SimpleDateFormat model = new SimpleDateFormat("dd/MM/yyyy");
+		spnFechaNacimiento.setModel(new SpinnerDateModel());
+		spnFechaNacimiento.setEditor(new JSpinner.DateEditor(spnFechaNacimiento, model.toPattern()));
+		spnFechaNacimiento.setValue(miCliente.getFechaNacimiento());
+		
+	}
+	
 	private void clean() {
 		txtCedula.setText("");
 		txtNombre.setText("");
 		txtDireccion.setText("");
+		
+		SimpleDateFormat model = new SimpleDateFormat("dd/MM/yyyy");
+		spnFechaNacimiento.setModel(new SpinnerDateModel());
+		spnFechaNacimiento.setEditor(new JSpinner.DateEditor(spnFechaNacimiento, model.toPattern()));
+		spnFechaNacimiento.setValue(new Date());
 		
 	}
 }
