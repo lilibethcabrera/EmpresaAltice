@@ -7,15 +7,12 @@ public abstract class Persona {
 	protected String nombre;
 	protected String direccion;
 	protected Date fechaNacimiento;
-	protected Contacto[] contactoReferencia; //Dos contactos de referencia
 	
-	public Persona(String cedula, String nombre, String direccion, Date fechaNacimiento,
-			Contacto[] contactoReferencia) {
+	public Persona(String cedula, String nombre, String direccion, Date fechaNacimiento) {
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.fechaNacimiento = fechaNacimiento;
-		this.contactoReferencia = contactoReferencia;
 	}
 
 	public String getCedula() {
@@ -49,15 +46,6 @@ public abstract class Persona {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
-	public Contacto[] getContactoReferencia() {
-		return contactoReferencia;
-	}
-
-	public void setContactoReferencia(Contacto[] contactoReferencia) {
-		this.contactoReferencia = contactoReferencia;
-	}
-	
 	
 
 }

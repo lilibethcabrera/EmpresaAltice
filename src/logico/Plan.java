@@ -2,24 +2,22 @@ package logico;
 
 import java.util.Date;
 
-public abstract class Plan {
-	protected String id;
-	protected float precio_apertura;
-	protected Cliente cliente;
-	protected Date fecha_apertura;
-	protected String tipo;
-	protected float mensualidad;
+public class Plan {
+	private String id;
+	private float precio_apertura;
+	private Date fecha_apertura;
+	private int minutos;
+	private int velocidad_internet;
+	private int canales;
+	private float mensualidad;
 	
-	public Plan(String id, float precio_apertura, Date fecha_apertura, String tipo, float mensualidad, Cliente cliente) {
+	public Plan(String id, float precio_apertura, int minutos, int velocidad_internet, int canales, float mensualidad) {
+		this.id = id;
 		this.precio_apertura = precio_apertura;
-		this.fecha_apertura = fecha_apertura;
-		this.tipo = tipo;
+		this.minutos = minutos;
+		this.velocidad_internet = velocidad_internet;
+		this.canales = canales;
 		this.mensualidad = mensualidad;
-		this.cliente = cliente;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public float getPrecio_apertura() {
@@ -30,20 +28,36 @@ public abstract class Plan {
 		this.precio_apertura = precio_apertura;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public Date getFecha_apertura() {
 		return fecha_apertura;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public void setFecha_apertura(Date fecha_apertura) {
+		this.fecha_apertura = fecha_apertura;
+	}
+
+	public int getMinutos() {
+		return minutos;
+	}
+
+	public void setMinutos(int minutos) {
+		this.minutos = minutos;
+	}
+
+	public int getVelocidad_internet() {
+		return velocidad_internet;
+	}
+
+	public void setVelocidad_internet(int velocidad_internet) {
+		this.velocidad_internet = velocidad_internet;
+	}
+
+	public int getCanales() {
+		return canales;
+	}
+
+	public void setCanales(int canales) {
+		this.canales = canales;
 	}
 
 	public float getMensualidad() {
@@ -53,6 +67,12 @@ public abstract class Plan {
 	public void setMensualidad(float mensualidad) {
 		this.mensualidad = mensualidad;
 	}
+
+	public String getId() {
+		return id;
+	}
+	
+	
 	
 	
 

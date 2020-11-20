@@ -6,9 +6,9 @@ public abstract class Empleado extends Persona {
 	protected Date fechaContratacion;
 	protected float salario;
 	protected String telefono;
-	public Empleado(String cedula, String nombre, String direccion, Date fechaNacimiento, Contacto[] contactoReferencia,
+	public Empleado(String cedula, String nombre, String direccion, Date fechaNacimiento,
 			Date fechaContratacion, float salario, String telefono) {
-		super(cedula, nombre, direccion, fechaNacimiento, contactoReferencia);
+		super(cedula, nombre, direccion, fechaNacimiento);
 		this.fechaContratacion = fechaContratacion;
 		this.salario = salario;
 		this.telefono = telefono;

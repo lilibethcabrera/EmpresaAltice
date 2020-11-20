@@ -6,9 +6,9 @@ import java.util.Date;
 public class Cliente extends Persona {
 	private ArrayList<Plan> misPlanes;
 	private ArrayList<Factura> misFacturas;
-	public Cliente(String cedula, String nombre, String direccion, Date fechaNacimiento,
-			Contacto[] contactoReferencia) {
-		super(cedula, nombre, direccion, fechaNacimiento, contactoReferencia);
+	
+	public Cliente(String cedula, String nombre, String direccion, Date fechaNacimiento) {
+		super(cedula, nombre, direccion, fechaNacimiento);
 		misPlanes = new ArrayList<>();
 		misFacturas = new ArrayList<>();
 	}
