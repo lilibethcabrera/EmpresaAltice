@@ -36,5 +36,16 @@ public class Cliente extends Persona {
 		
 		return miFactura;
 	}
+	public int getCantFacturasActivas() {
+		int cantidadFacturas = 0;
+		
+		for(Factura factura : misFacturas) {
+			if(!factura.isPagada()) {
+				cantidadFacturas++;
+			}
+		}
+		
+		return cantidadFacturas;
+	}
 
 }
