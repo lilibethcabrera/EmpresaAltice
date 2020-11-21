@@ -47,5 +47,14 @@ public class Cliente extends Persona {
 		
 		return cantidadFacturas;
 	}
+	public int indicePlanPorId(String selecte) {
+		int i;
+		for(i = 0; i < misPlanes.size(); i++) {
+			if(misPlanes.get(i).getId().equalsIgnoreCase(selecte)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 }

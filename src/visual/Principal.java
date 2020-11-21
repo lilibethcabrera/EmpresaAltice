@@ -81,8 +81,8 @@ public class Principal extends JFrame {
 		mntmListarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListEmpleado listarEmpleado = new ListEmpleado();
-				listarEmpleado.setModal(true);
 				listarEmpleado.setVisible(true);
+				listarEmpleado.setModal(true);
 			}
 		});
 		mnEmpleado.add(mntmListarEmpleado);
@@ -100,9 +100,23 @@ public class Principal extends JFrame {
 		menuBar.add(mnPlanes);
 		
 		JMenuItem mntmCrearPlan = new JMenuItem("Crear Plan");
+		mntmCrearPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegPlan registrarPlan = new RegPlan(null);
+				registrarPlan.setModal(true);
+				registrarPlan.setVisible(true);
+			}
+		});
 		mnPlanes.add(mntmCrearPlan);
 		
 		JMenuItem mntmListarPlanes = new JMenuItem("Listar Planes");
+		mntmListarPlanes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListPlanes listarPlanes = new ListPlanes();
+				listarPlanes.setModal(true);
+				listarPlanes.setVisible(true);
+			}
+		});
 		mnPlanes.add(mntmListarPlanes);
 		
 		contentPane = new JPanel();

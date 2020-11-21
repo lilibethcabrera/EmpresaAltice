@@ -130,10 +130,23 @@ public class Altice {
 		misEmpleados.set(aux, empleado);
 		
 	}
+	public void modificarPlan(Plan plan) {
+		int aux = indicePlanPorId(plan.getId());
+		misPlanes.set(aux, plan);
+	}
 	public int indiceEmpleadoPorCedula(String selecte) {
 		int i;
 		for(i = 0; i < misEmpleados.size(); i++) {
 			if(misEmpleados.get(i).getCedula().equalsIgnoreCase(selecte)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public int indicePlanPorId(String selecte) {
+		int i;
+		for(i = 0; i < misPlanes.size(); i++) {
+			if(misPlanes.get(i).getId().equalsIgnoreCase(selecte)) {
 				return i;
 			}
 		}
