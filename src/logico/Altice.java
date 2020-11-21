@@ -152,5 +152,21 @@ public class Altice {
 		}
 		return -1;
 	}
+	public void facturarCliente(String cedula, Factura factura) {
+		for(Cliente miCliente : misClientes) {
+			if(miCliente.getCedula().equalsIgnoreCase(cedula)){
+				miCliente.agregarFactura(factura);
+				break;
+			}
+		}
+	}
+	public void agregarPlanCliente(Plan plan, String cedula) {
+		for(Cliente miCliente : misClientes) {
+			if(miCliente.getCedula().equalsIgnoreCase(cedula)){
+				miCliente.agregarPlan(plan);
+				break;
+			}
+		}
+	}
 
 }

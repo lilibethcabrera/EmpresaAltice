@@ -64,6 +64,16 @@ public class Principal extends JFrame {
 		});
 		mnCliente.add(mntmListarClientes);
 		
+		JMenuItem mntmSuscribirEnPlan = new JMenuItem("Suscribir en Plan");
+		mntmSuscribirEnPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AplicarPlanCliente aplicar = new AplicarPlanCliente();
+				aplicar.setModal(true);
+				aplicar.setVisible(true);
+			}
+		});
+		mnCliente.add(mntmSuscribirEnPlan);
+		
 		JMenu mnEmpleado = new JMenu("Empleado");
 		menuBar.add(mnEmpleado);
 		
@@ -90,8 +100,8 @@ public class Principal extends JFrame {
 		JMenu mnFactura = new JMenu("Factura");
 		menuBar.add(mnFactura);
 		
-		JMenuItem mntmGenerarFactura = new JMenuItem("Generar Factura");
-		mnFactura.add(mntmGenerarFactura);
+		JMenuItem mntmPagarFactura = new JMenuItem("Pagar Factura");
+		mnFactura.add(mntmPagarFactura);
 		
 		JMenuItem mntmListarFacturas = new JMenuItem("Listar Facturas");
 		mnFactura.add(mntmListarFacturas);
