@@ -3,6 +3,10 @@ package logico;
 import java.util.Date;
 
 public class Comercial extends Empleado {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String zona;
 	
 

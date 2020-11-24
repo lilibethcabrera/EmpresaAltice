@@ -3,6 +3,10 @@ package logico;
 import java.util.Date;
 
 public abstract class Empleado extends Persona {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Date fechaContratacion;
 	protected float salario;
 	protected String telefono;

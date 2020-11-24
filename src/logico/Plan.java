@@ -1,8 +1,13 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Plan {
+public class Plan implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private float precio_apertura;
 	private Date fecha_apertura;

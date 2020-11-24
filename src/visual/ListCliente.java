@@ -91,6 +91,10 @@ public class ListCliente extends JDialog {
 					btnListarFactura = new JButton("Listar Factura");
 					btnListarFactura.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							Cliente client = Altice.getInstance().buscarClientePorCedula(selecte);
+							ListFacturas list = new ListFacturas(client.getMisFacturas(), client);
+							list.setModal(true);
+							list.setVisible(true);
 						}
 					});
 					btnListarFactura.setEnabled(false);

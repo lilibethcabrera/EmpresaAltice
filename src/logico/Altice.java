@@ -1,18 +1,21 @@
 package logico;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import logico.Cliente;
 
-public class Altice {
+public class Altice implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Cliente> misClientes;
 	private ArrayList<Plan> misPlanes;
 	private ArrayList<Factura> misFacturas;

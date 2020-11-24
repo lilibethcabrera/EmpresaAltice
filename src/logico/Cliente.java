@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Cliente extends Persona {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Plan> misPlanes;
 	private ArrayList<Factura> misFacturas;
 	

@@ -13,7 +13,18 @@ import logico.Altice;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -46,6 +57,39 @@ public class Principal extends JFrame {
 	}
 
 	public Principal() {
+		File datos = new File("Altice.dat");
+		if(datos.exists()) {
+			FileInputStream entradaFichero;
+			 try {
+	                entradaFichero = new FileInputStream(datos);
+	                ObjectInputStream entrada = new ObjectInputStream(entradaFichero);
+	                Altice.setInstance((Altice)entrada.readObject());
+	                entradaFichero.close();
+	            } catch (FileNotFoundException e) {
+	                e.printStackTrace();
+	            } catch (ClassNotFoundException e) {
+	                e.printStackTrace();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+			
+		}
+		addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent arg0) {
+                FileOutputStream f;
+                try {
+                    f = new FileOutputStream("Altice.dat");
+                    ObjectOutputStream guardar = new ObjectOutputStream(f);
+                    guardar.writeObject(Altice.getInstance());
+                    f.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
@@ -114,18 +158,20 @@ public class Principal extends JFrame {
 		JMenu mnFactura = new JMenu("Factura");
 		menuBar.add(mnFactura);
 		
-		JMenuItem mntmPagarFactura = new JMenuItem("Pagar Factura");
-		mnFactura.add(mntmPagarFactura);
-		
-		JMenuItem mntmListarFacturas = new JMenuItem("Listar Facturas");
-		mnFactura.add(mntmListarFacturas);
-		
 		JMenuItem mntmPruebaFacturar = new JMenuItem("Prueba Facturar");
 		mntmPruebaFacturar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Altice.getInstance().facturarCliente();
 			}
 		});
+		
+		JMenuItem mntmGenerarReporte = new JMenuItem("Generar Reporte");
+		mntmGenerarReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Reporte generado con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		mnFactura.add(mntmGenerarReporte);
 		mnFactura.add(mntmPruebaFacturar);
 		
 		JMenu mnPlanes = new JMenu("Planes");
