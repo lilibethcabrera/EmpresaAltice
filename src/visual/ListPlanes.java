@@ -21,6 +21,8 @@ import logico.Cliente;
 import logico.Plan;
 import visual.RegCliente;
 import logico.Altice;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class ListPlanes extends JDialog {
 
@@ -34,10 +36,13 @@ public class ListPlanes extends JDialog {
 	private String selecte = "";
 
 	public ListPlanes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListPlanes.class.getResource("/Imagenes/bill(1).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		setTitle("Planes Actuales");
 		setBounds(100, 100, 557, 357);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -69,6 +74,7 @@ public class ListPlanes extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

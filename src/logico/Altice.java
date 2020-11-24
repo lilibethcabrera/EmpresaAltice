@@ -11,24 +11,19 @@ import java.util.Date;
 import logico.Cliente;
 
 public class Altice implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Cliente> misClientes;
 	private ArrayList<Plan> misPlanes;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Empleado> misEmpleados;
 	private static Altice altice;
-	private boolean facturacion_realizada;
 	private Altice() {
 		super();
 		misClientes = new ArrayList<>();
 		misPlanes = new ArrayList<>();
 		misFacturas = new ArrayList<>();
 		misEmpleados = new ArrayList<>();
-		facturacion_realizada = false;
 	}
 	public static Altice getInstance() {
 		if(altice == null) {
@@ -187,47 +182,6 @@ public class Altice implements Serializable{
 				break;
 			}
 		}
-	}
-	public void facturarCliente() {
-		Factura factura = null;
-		
-		Date hoy = new Date(), fechaPlan = null, fechaRecargo;
-		LocalDate localDate_hoy = hoy.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate localDate_plan;
-		String id_factura;
-		Calendar c = Calendar.getInstance();
-		
-		
-		for(Cliente cliente: misClientes) {
-			for(Plan plan : cliente.getMisPlanes()) {
-					fechaPlan =plan.getFecha_apertura();
-					localDate_plan = fechaPlan.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					if(localDate_hoy.getMonthValue() != localDate_plan.getMonthValue() || localDate_hoy.getYear() != localDate_plan.getYear() ) {
-						if(misFacturas.size() == 0) {
-							id_factura = "0";
-						}else {
-							int index = misFacturas.size();
-							id_factura = Integer.toString((Integer.parseInt(misFacturas.get(index).getId()) + 1));
-						}
-						c.setTime(new Date());
-						c.add(Calendar.DATE, 20);//Tiene 20 dias para pagar
-						fechaRecargo = c.getTime();
-						factura = new Factura(id_factura, new Date(), fechaRecargo, plan.getMensualidad(),plan,cliente, false);
-						cliente.agregarFactura(factura);
-						agregarFactura(factura);
-					}
-				
-				
-			}
-		}
-		setFacturacion_realizada(true);
-
-	}
-	public boolean isFacturacion_realizada() {
-		return facturacion_realizada;
-	}
-	public void setFacturacion_realizada(boolean facturacion_realizada) {
-		this.facturacion_realizada = facturacion_realizada;
 	}
 
 }

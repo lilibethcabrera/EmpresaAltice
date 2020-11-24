@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Imagenes.ImagenFondoPrincipal;
 import logico.Altice;
 
 import javax.swing.JMenuBar;
@@ -39,16 +40,10 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					ImagenFondoPrincipal p = new ImagenFondoPrincipal("/Imagenes/Fondo.jpg");
 					Principal frame = new Principal();
-					Date hoy = new Date();
-					LocalDate localDate_hoy = hoy.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-					if(localDate_hoy.getMonthValue() == 30 && !Altice.getInstance().isFacturacion_realizada()) {
-						Altice.getInstance().facturarCliente();
-					}
-					if(localDate_hoy.getMonthValue() != 30) {
-						Altice.getInstance().setFacturacion_realizada(false);
-					}
 					frame.setVisible(true);
+					frame.getContentPane().add(p);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,8 +144,8 @@ public class Principal extends JFrame {
 		mntmListarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListEmpleado listarEmpleado = new ListEmpleado();
-				listarEmpleado.setVisible(true);
 				listarEmpleado.setModal(true);
+				listarEmpleado.setVisible(true);
 			}
 		});
 		mnEmpleado.add(mntmListarEmpleado);
@@ -161,7 +156,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmPruebaFacturar = new JMenuItem("Prueba Facturar");
 		mntmPruebaFacturar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Altice.getInstance().facturarCliente();
+				
 			}
 		});
 		

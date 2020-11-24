@@ -33,6 +33,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class RegEmpleado extends JDialog {
 
@@ -56,7 +58,8 @@ public class RegEmpleado extends JDialog {
 	
 
 	public RegEmpleado(Empleado empleado) {
-		setTitle("Registrar Empleado");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegEmpleado.class.getResource("/Imagenes/value(2).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		if(empleado == null) {
 			setTitle("Registrar Empleado");
 		}else {
@@ -66,6 +69,7 @@ public class RegEmpleado extends JDialog {
 		miEmpleado = empleado;
 		setBounds(100, 100, 548, 313);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new TitledBorder(null, "Datos Generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -187,6 +191,7 @@ public class RegEmpleado extends JDialog {
 		contentPanel.add(cbxZona);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

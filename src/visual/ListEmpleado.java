@@ -23,6 +23,8 @@ import logico.Empleado;
 import visual.RegCliente;
 import logico.Administrativo;
 import logico.Altice;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class ListEmpleado extends JDialog {
 
@@ -36,10 +38,13 @@ public class ListEmpleado extends JDialog {
 	private String selecte = "";
 
 	public ListEmpleado() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListEmpleado.class.getResource("/Imagenes/value(2).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		setTitle("Empleados Actuales");
 		setBounds(100, 100, 557, 357);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -71,6 +76,7 @@ public class ListEmpleado extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -82,6 +88,7 @@ public class ListEmpleado extends JDialog {
 					RegEmpleado modClient = new RegEmpleado(empleado);
 					modClient.setModal(true);
 					modClient.setVisible(true);
+					
 						
 					}
 				});

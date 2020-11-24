@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.Calendar;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class RegCliente extends JDialog {
 
@@ -38,6 +40,8 @@ public class RegCliente extends JDialog {
 	private String cedulaVieja; //En caso de que la cedula cambie al modificar
 
 	public RegCliente(Cliente cliente) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegCliente.class.getResource("/Imagenes/customer(1).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		if(cliente == null) {
 			setTitle("Registrar Cliente");
 		}else {
@@ -45,8 +49,9 @@ public class RegCliente extends JDialog {
 			cedulaVieja = cliente.getCedula();
 		}
 		miCliente = cliente;
-		setBounds(100, 100, 477, 256);
+		setBounds(100, 100, 477, 236);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new TitledBorder(null, "Datos Generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -89,6 +94,7 @@ public class RegCliente extends JDialog {
 		contentPanel.add(spnFechaNacimiento);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

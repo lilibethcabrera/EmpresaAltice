@@ -28,6 +28,9 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.SystemColor;
 
 public class AplicarPlanCliente extends JDialog {
 
@@ -49,14 +52,17 @@ public class AplicarPlanCliente extends JDialog {
 	private JButton btnRealizar = new JButton("Realizar");
 
 	public AplicarPlanCliente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AplicarPlanCliente.class.getResource("/Imagenes/bill(1).png")));
 		setTitle("Suscribir Cliente a Plan");
 		setBounds(100, 100, 678, 583);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JPanel panelCliente = new JPanel();
+		panelCliente.setBackground(SystemColor.activeCaptionBorder);
 		panelCliente.setBorder(new TitledBorder(null, "Datos Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelCliente.setBounds(10, 75, 642, 102);
 		contentPanel.add(panelCliente);
@@ -94,6 +100,7 @@ public class AplicarPlanCliente extends JDialog {
 		txtDireccion.setColumns(10);
 		
 		JPanel panelBuscar = new JPanel();
+		panelBuscar.setBackground(SystemColor.activeCaptionBorder);
 		panelBuscar.setBorder(new TitledBorder(null, "Buscar Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelBuscar.setBounds(10, 11, 642, 53);
 		contentPanel.add(panelBuscar);
@@ -109,6 +116,7 @@ public class AplicarPlanCliente extends JDialog {
 		txtBuscarCedula.setColumns(10);
 		
 		JButton btnBuscar = new JButton("");
+		btnBuscar.setIcon(new ImageIcon(AplicarPlanCliente.class.getResource("/Imagenes/magnifier(1).png")));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -127,6 +135,7 @@ public class AplicarPlanCliente extends JDialog {
 		panelBuscar.add(btnBuscar);
 		
 		JPanel panelDatosFactura = new JPanel();
+		panelDatosFactura.setBackground(SystemColor.activeCaptionBorder);
 		panelDatosFactura.setBorder(new TitledBorder(null, "Datos Factura", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelDatosFactura.setBounds(10, 394, 642, 102);
 		contentPanel.add(panelDatosFactura);
@@ -193,6 +202,7 @@ public class AplicarPlanCliente extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -209,7 +219,7 @@ public class AplicarPlanCliente extends JDialog {
 							} catch (ParseException e1) {
 								e1.printStackTrace();
 							}
-							miFactura = new Factura(id_actual, fecha, null, Float.parseFloat(txtMonto.getText()),miPlan,miCliente, true); 
+							miFactura = new Factura(id_actual, fecha, Float.parseFloat(txtMonto.getText()),miPlan,miCliente, true); 
 							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							Altice.getInstance().agregarPlanCliente(miPlan, miCliente.getCedula());
 							Altice.getInstance().agregarFactura(miFactura);

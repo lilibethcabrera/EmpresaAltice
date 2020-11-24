@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import logico.Cliente;
 import visual.RegCliente;
 import logico.Altice;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class ListCliente extends JDialog {
 
@@ -34,10 +36,12 @@ public class ListCliente extends JDialog {
 	private JButton btnListarFactura;
 
 	public ListCliente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListCliente.class.getResource("/Imagenes/customer(1).png")));
 		setTitle("Clientes Actuales");
 		setBounds(100, 100, 557, 357);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -73,6 +77,7 @@ public class ListCliente extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

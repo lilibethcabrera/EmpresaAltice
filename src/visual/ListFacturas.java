@@ -23,6 +23,8 @@ import logico.Factura;
 import logico.Plan;
 import visual.RegCliente;
 import logico.Altice;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class ListFacturas extends JDialog {
 
@@ -36,11 +38,14 @@ public class ListFacturas extends JDialog {
 	private static ArrayList<Factura> facturas;
 
 	public ListFacturas(ArrayList<Factura> misFacturas, Cliente miCliente) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListFacturas.class.getResource("/Imagenes/bill(1).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		facturas = misFacturas;
 		setTitle("Facturas Actuales");
 		setBounds(100, 100, 557, 357);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -70,6 +75,7 @@ public class ListFacturas extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

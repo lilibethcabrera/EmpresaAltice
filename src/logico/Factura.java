@@ -10,15 +10,13 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private Date fecha_facturacion;
-	private Date fecha_recargo;
 	private float monto;
 	private Plan plan;
 	private Cliente cliente;
 	private boolean pagada; //true = pagada false = no pagada
-	public Factura(String id, Date fecha_facturacion, Date fecha_recargo, float monto, Plan plan, Cliente cliente, boolean pagada) {
+	public Factura(String id, Date fecha_facturacion,float monto, Plan plan, Cliente cliente, boolean pagada) {
 		this.id = id;
 		this.fecha_facturacion = fecha_facturacion;
-		this.fecha_recargo = fecha_recargo;
 		this.monto = monto;
 		this.plan = plan;
 		this.cliente = cliente;
@@ -31,9 +29,6 @@ public class Factura implements Serializable {
 		return fecha_facturacion;
 	}
 	
-	public Date getFecha_recargo() {
-		return fecha_recargo;
-	}
 	public float getMonto() {
 		return monto;
 	}

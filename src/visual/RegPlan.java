@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.SpinnerNumberModel;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class RegPlan extends JDialog {
 
@@ -32,6 +34,8 @@ public class RegPlan extends JDialog {
 	private JSpinner spnVoz = new JSpinner();
 	private JSpinner spnPrecio = new JSpinner();
 	public RegPlan(Plan plan) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegPlan.class.getResource("/Imagenes/bill(1).png")));
+		getContentPane().setBackground(SystemColor.activeCaptionBorder);
 		
 		if(plan == null) {
 			setTitle("Crear Plan");
@@ -51,11 +55,13 @@ public class RegPlan extends JDialog {
 		miPlan = plan;
 		setBounds(100, 100, 512, 241);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.activeCaptionBorder);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(SystemColor.activeCaptionBorder);
 			panel.setBorder(new TitledBorder(null, "Caracteristicas del plan", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
@@ -111,6 +117,7 @@ public class RegPlan extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.activeCaptionBorder);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
