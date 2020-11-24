@@ -56,5 +56,14 @@ public class Cliente extends Persona {
 		}
 		return -1;
 	}
+	public void pagarFactura(String selecte) {
+		for(Factura factura : misFacturas) {
+			if(factura.getId().equalsIgnoreCase(selecte)) {
+				factura.setPagada(true);
+				Altice.getInstance().pagarFactura(selecte);
+				break;
+			}
+		}
+	}
 
 }

@@ -213,7 +213,7 @@ public class AplicarPlanCliente extends JDialog {
 							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							Altice.getInstance().agregarPlanCliente(miPlan, miCliente.getCedula());
 							Altice.getInstance().agregarFactura(miFactura);
-							Altice.getInstance().facturarCliente(miCliente.getCedula(), miFactura);
+							Altice.getInstance().agregarFacturaCliente(miCliente.getCedula(), miFactura);
 							clean();
 						    selecte = "";
 					}

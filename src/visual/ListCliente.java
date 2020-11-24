@@ -31,6 +31,7 @@ public class ListCliente extends JDialog {
 	private JButton btnModificar;
 	private JButton btnEliminar;
 	private String selecte = "";
+	private JButton btnListarFactura;
 
 	public ListCliente() {
 		setTitle("Clientes Actuales");
@@ -52,6 +53,7 @@ public class ListCliente extends JDialog {
 						int index = table.getSelectedRow();
 						if(index >= 0) {
 							btnModificar.setEnabled(true);
+							 btnListarFactura.setEnabled(true);
 							if(Altice.getInstance().getMisClientes().get(index).getCantFacturasActivas() == 0) {
 								btnEliminar.setEnabled(true);
 							}else {
@@ -85,6 +87,15 @@ public class ListCliente extends JDialog {
 						
 					}
 				});
+				{
+					btnListarFactura = new JButton("Listar Factura");
+					btnListarFactura.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnListarFactura.setEnabled(false);
+					buttonPane.add(btnListarFactura);
+				}
 				buttonPane.add(btnModificar);
 			}
 			{
@@ -99,6 +110,7 @@ public class ListCliente extends JDialog {
 								loadClientes();
 							    btnEliminar.setEnabled(false);
 							    btnModificar.setEnabled(false);
+							    btnListarFactura.setEnabled(false);
 							    selecte = "";
 						}
 						

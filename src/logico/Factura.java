@@ -10,8 +10,7 @@ public class Factura {
 	private Plan plan;
 	private Cliente cliente;
 	private boolean pagada; //true = pagada false = no pagada
-	public Factura(String id, Date fecha_facturacion, Date fecha_recargo, float monto, Plan plan, Cliente cliente,
-			boolean pagada) {
+	public Factura(String id, Date fecha_facturacion, Date fecha_recargo, float monto, Plan plan, Cliente cliente, boolean pagada) {
 		this.id = id;
 		this.fecha_facturacion = fecha_facturacion;
 		this.fecha_recargo = fecha_recargo;

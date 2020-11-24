@@ -7,10 +7,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.Altice;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
@@ -23,6 +29,14 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
+					Date hoy = new Date();
+					LocalDate localDate_hoy = hoy.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					if(localDate_hoy.getMonthValue() == 30 && !Altice.getInstance().isFacturacion_realizada()) {
+						Altice.getInstance().facturarCliente();
+					}
+					if(localDate_hoy.getMonthValue() != 30) {
+						Altice.getInstance().setFacturacion_realizada(false);
+					}
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,6 +119,14 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmListarFacturas = new JMenuItem("Listar Facturas");
 		mnFactura.add(mntmListarFacturas);
+		
+		JMenuItem mntmPruebaFacturar = new JMenuItem("Prueba Facturar");
+		mntmPruebaFacturar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Altice.getInstance().facturarCliente();
+			}
+		});
+		mnFactura.add(mntmPruebaFacturar);
 		
 		JMenu mnPlanes = new JMenu("Planes");
 		menuBar.add(mnPlanes);

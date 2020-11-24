@@ -11,6 +11,7 @@ public class Plan {
 	private int canales;
 	private float mensualidad;
 	
+	
 	public Plan(String id, float precio_apertura, int minutos, int velocidad_internet, int canales, float mensualidad) {
 		this.id = id;
 		this.precio_apertura = precio_apertura;
@@ -71,8 +72,8 @@ public class Plan {
 	public String getId() {
 		return id;
 	}
-	
-	
+
+
 	
 	
 
