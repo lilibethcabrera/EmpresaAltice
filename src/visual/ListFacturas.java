@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -60,13 +61,17 @@ public class ListFacturas extends JDialog {
 					public void mouseClicked(MouseEvent e) {
 						int index = table.getSelectedRow();
 						if(index >= 0) {
-							btnPagar.setEnabled(true);
 							selecte = table.getValueAt(index, 0).toString();
+							if(miCliente.buscarFacturaPorId(selecte).isPagada()) {
+								btnPagar.setEnabled(false);
+							}else {
+								btnPagar.setEnabled(true);
+							}
 						}
 					}
 				});
 				model = new DefaultTableModel();
-				String[] columnNames = {"Id","Id de Plan", "Fecha de Facturacion","Monto"};
+				String[] columnNames = {"Id","Id de Plan", "Fecha de Facturacion","Monto", "Estado"};
 				model.setColumnIdentifiers(columnNames);
 				table.setModel(model);
 				scrollPane.setViewportView(table);
@@ -110,21 +115,21 @@ public class ListFacturas extends JDialog {
 		}
 		loadFacturas();
 	}
-	 //{"Id","Fecha de Facturacion","Monto","Id de Plan"};
+	 //{"Id","Fecha de Facturacion","Monto","Id de Plan", "Estado"};
 	public static void loadFacturas() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+		
 		model.setRowCount(0);
 		fila = new Object[model.getColumnCount()];
 		for(Factura factura : facturas) {
-			if(!factura.isPagada()) {
-				fila[0] = factura.getId();
-				fila[1] = factura.getPlan().getId();
-				fila[2] = factura.getFecha_facturacion();
-				fila[3] = factura.getMonto();
-				
-				model.addRow(fila);
-			}
-			
-
+			fila[0] = factura.getId();
+			fila[1] = factura.getPlan().getId();
+			fila[2] = format.format(factura.getFecha_facturacion());
+			fila[3] = factura.getMonto();
+			fila[4] = factura.isPagada() ? "Pagada" : "No pagada";
+			model.addRow(fila);
 		}
 			
 		

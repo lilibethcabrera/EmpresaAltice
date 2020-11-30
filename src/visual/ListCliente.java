@@ -34,6 +34,7 @@ public class ListCliente extends JDialog {
 	private JButton btnEliminar;
 	private String selecte = "";
 	private JButton btnListarFactura;
+	private JButton btnListarPlanes;
 
 	public ListCliente() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListCliente.class.getResource("/Imagenes/customer(1).png")));
@@ -57,12 +58,14 @@ public class ListCliente extends JDialog {
 						int index = table.getSelectedRow();
 						if(index >= 0) {
 							btnModificar.setEnabled(true);
-							 btnListarFactura.setEnabled(true);
+							btnListarFactura.setEnabled(true);
+							btnListarPlanes.setEnabled(true);
 							if(Altice.getInstance().getMisClientes().get(index).getCantFacturasActivas() == 0) {
 								btnEliminar.setEnabled(true);
 							}else {
 								btnEliminar.setEnabled(false);
 							}
+							
 							selecte = table.getValueAt(index, 0).toString();
 						}
 					}
@@ -102,6 +105,19 @@ public class ListCliente extends JDialog {
 							list.setVisible(true);
 						}
 					});
+					{
+						btnListarPlanes = new JButton("Listar Planes");
+						btnListarPlanes.setEnabled(false);
+						btnListarPlanes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Cliente client = Altice.getInstance().buscarClientePorCedula(selecte);
+								PlanesCliente planes = new PlanesCliente(client);
+								planes.setModal(true);
+								planes.setVisible(true);
+							}
+						});
+						buttonPane.add(btnListarPlanes);
+					}
 					btnListarFactura.setEnabled(false);
 					buttonPane.add(btnListarFactura);
 				}
@@ -119,6 +135,7 @@ public class ListCliente extends JDialog {
 								loadClientes();
 							    btnEliminar.setEnabled(false);
 							    btnModificar.setEnabled(false);
+							    btnListarPlanes.setEnabled(false);
 							    btnListarFactura.setEnabled(false);
 							    selecte = "";
 						}

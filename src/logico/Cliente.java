@@ -40,6 +40,18 @@ public class Cliente extends Persona {
 		
 		return miFactura;
 	}
+	public Plan buscarPlanPorId(String Id) {
+		Plan miPlan = null;
+		
+		for(Plan plan: misPlanes) {
+			if(plan.getId().equalsIgnoreCase(Id)) {
+				miPlan = plan;
+				break;
+			}
+		}
+		
+		return miPlan;
+	}
 	public int getCantFacturasActivas() {
 		int cantidadFacturas = 0;
 		

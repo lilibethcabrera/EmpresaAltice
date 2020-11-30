@@ -104,16 +104,14 @@ public class Altice implements Serializable{
 		return miPlan;
 	}
 	public Factura buscarFacturaPorId(String id) {
-		Factura miFactura = null;
 		
 		for(Factura factura : misFacturas) {
 			if(factura.getId().equalsIgnoreCase(id)) {
-				miFactura = factura;
-				break;
+				return factura;
 			}
 		}
 		
-		return miFactura;
+		return null;
 	}
 	public int indiceClientePorCedula(String selecte) {
 		int i;
@@ -182,6 +180,16 @@ public class Altice implements Serializable{
 				break;
 			}
 		}
+	}
+	public Factura facturar(Plan plan, Cliente cliente) {
+		String id_actual = Integer.toString(Integer.parseInt(misFacturas.get(misFacturas.size() - 1).getId())+1);
+		Factura factura = new Factura(id_actual, new Date(),plan.getMensualidad(),plan,cliente,false);
+		plan.setUltimoMesFacturado(Calendar.getInstance().get(Calendar.MONTH) + 1);
+		misFacturas.add(factura);
+		return factura;
+	}
+	public void imprimirFactura(Factura factura) {
+		
 	}
 
 }

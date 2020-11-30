@@ -210,9 +210,16 @@ public class AplicarPlanCliente extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea registrar el plan no.: " + miPlan.getId(),"Información",JOptionPane.WARNING_MESSAGE);
 						  if(option == JOptionPane.OK_OPTION){
-							int cant_planes = Altice.getInstance().getMisPlanes().size();
-							String id_ultimo = Altice.getInstance().getMisPlanes().get(cant_planes - 1).getId();
-							String id_actual = Integer.toString((Integer.parseInt(id_ultimo) + 1));
+							String id_actual;
+							int cant_facturas = Altice.getInstance().getMisFacturas().size();
+							if(cant_facturas == 0) {
+								id_actual = "0";
+							}else {
+								String id_ultimo = Altice.getInstance().getMisFacturas().get(cant_facturas - 1).getId();
+								id_actual = Integer.toString(Integer.parseInt(id_ultimo) + 1);
+							}
+							
+							
 							Date fecha = new Date();
 							try {
 								fecha = new SimpleDateFormat("dd/MM/yyyy").parse(txtFecha.getText());

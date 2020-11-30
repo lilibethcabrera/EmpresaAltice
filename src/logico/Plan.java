@@ -15,6 +15,7 @@ public class Plan implements Serializable {
 	private int velocidad_internet;
 	private int canales;
 	private float mensualidad;
+	private int ultimoMesFacturado = 0;
 	
 	
 	public Plan(String id, float precio_apertura, int minutos, int velocidad_internet, int canales, float mensualidad) {
@@ -76,6 +77,14 @@ public class Plan implements Serializable {
 
 	public String getId() {
 		return id;
+	}
+
+	public int getUltimoMesFacturado() {
+		return ultimoMesFacturado;
+	}
+
+	public void setUltimoMesFacturado(int ultimoMesFacturado) {
+		this.ultimoMesFacturado = ultimoMesFacturado;
 	}
 
 

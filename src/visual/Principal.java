@@ -153,13 +153,6 @@ public class Principal extends JFrame {
 		JMenu mnFactura = new JMenu("Factura");
 		menuBar.add(mnFactura);
 		
-		JMenuItem mntmPruebaFacturar = new JMenuItem("Prueba Facturar");
-		mntmPruebaFacturar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
 		JMenuItem mntmGenerarReporte = new JMenuItem("Generar Reporte");
 		mntmGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,7 +160,6 @@ public class Principal extends JFrame {
 			}
 		});
 		mnFactura.add(mntmGenerarReporte);
-		mnFactura.add(mntmPruebaFacturar);
 		
 		JMenu mnPlanes = new JMenu("Planes");
 		menuBar.add(mnPlanes);
