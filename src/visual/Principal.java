@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import Imagenes.ImagenFondoPrincipal;
 import logico.Altice;
+import logico.Factura;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Principal extends JFrame {
 
@@ -52,6 +54,8 @@ public class Principal extends JFrame {
 	}
 
 	public Principal() {
+		setTitle("Altice ");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imagenes/Altice_logo_(new).png")));
 		File datos = new File("Altice.dat");
 		if(datos.exists()) {
 			FileInputStream entradaFichero;
@@ -153,9 +157,17 @@ public class Principal extends JFrame {
 		JMenu mnFactura = new JMenu("Factura");
 		menuBar.add(mnFactura);
 		
-		JMenuItem mntmGenerarReporte = new JMenuItem("Generar Reporte");
+		JMenuItem mntmGenerarReporte = new JMenuItem("Imprimir Todas Las Facturas");
 		mntmGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				for(Factura factura : Altice.getInstance().getMisFacturas()) {
+					try {
+						Altice.getInstance().imprimirFactura(factura);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				JOptionPane.showMessageDialog(null, "Reporte generado con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

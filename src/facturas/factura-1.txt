@@ -1,0 +1,8 @@
+Factura Id.1
+Fecha de Facturacion: 29/11/2020
+---------------------------------------------
+A nombre de: Francisco | Cedula: 1234
+Plan de ID: 1
+---------------------------------------------
+Monto: 500.0
+Estado Factura: Pagada

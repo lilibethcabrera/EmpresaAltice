@@ -1,7 +1,13 @@
 package logico;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
-
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -188,7 +194,29 @@ public class Altice implements Serializable{
 		misFacturas.add(factura);
 		return factura;
 	}
-	public void imprimirFactura(Factura factura) {
+	public void imprimirFactura(Factura factura) throws IOException {
+		String directorio = new File(".").getCanonicalPath() + "\\src\\facturas\\"+"factura-" + factura.getId() +".txt";
+		File fout = new File(directorio);
+		FileOutputStream fos = new FileOutputStream(fout);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		bw.write("Factura Id." + factura.getId());
+		bw.newLine();
+		bw.write("Fecha de Facturacion: " + format.format(factura.getFecha_facturacion()));
+		bw.newLine();
+		bw.write("---------------------------------------------");
+		bw.newLine();
+		bw.write("A nombre de: " + factura.getCliente().getNombre() + " | Cedula: " + factura.getCliente().getCedula());
+		bw.newLine();
+		bw.write("Plan de ID: " + factura.getPlan().getId());
+		bw.newLine();
+		bw.write("---------------------------------------------");
+		bw.newLine();
+		bw.write("Monto: " + factura.getMonto());
+		bw.newLine();
+		bw.write("Estado Factura: " + (factura.isPagada() ? "Pagada" : "No pagada"));
+		bw.close();
 		
 	}
 

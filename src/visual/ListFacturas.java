@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class ListFacturas extends JDialog {
 	private JButton btnPagar;
 	private String selecte = "";
 	private static ArrayList<Factura> facturas;
+	private JButton btnImprimirFactura;
 
 	public ListFacturas(ArrayList<Factura> misFacturas, Cliente miCliente) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListFacturas.class.getResource("/Imagenes/bill(1).png")));
@@ -67,6 +69,7 @@ public class ListFacturas extends JDialog {
 							}else {
 								btnPagar.setEnabled(true);
 							}
+							btnImprimirFactura.setEnabled(true);
 						}
 					}
 				});
@@ -100,6 +103,24 @@ public class ListFacturas extends JDialog {
 						
 					}
 				});
+				{
+					btnImprimirFactura = new JButton("Imprimir Factura");
+					btnImprimirFactura.setEnabled(false);
+					btnImprimirFactura.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Factura factu = Altice.getInstance().buscarFacturaPorId(selecte);
+							try {
+								Altice.getInstance().imprimirFactura(factu);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+							btnImprimirFactura.setEnabled(false);
+						}
+					});
+					buttonPane.add(btnImprimirFactura);
+				}
 				buttonPane.add(btnPagar);
 			}
 			{
