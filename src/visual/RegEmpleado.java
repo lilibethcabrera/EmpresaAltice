@@ -223,7 +223,6 @@ public class RegEmpleado extends JDialog {
 								}else {
 									if(empleado == null) {
 										Altice.getInstance().agregarEmpleado(comercial());
-										JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 										
 										clean();
 									}else {
@@ -231,6 +230,7 @@ public class RegEmpleado extends JDialog {
 										ListEmpleado.loadEmpleados();
 										dispose();
 									}
+									JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 								}
 								
 							}	

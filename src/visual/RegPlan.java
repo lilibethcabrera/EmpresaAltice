@@ -136,7 +136,6 @@ public class RegPlan extends JDialog {
 								float mensualidad = (float)spnMensualidad.getValue();
 								Plan nuevoPlan = new Plan(id,apertura,voz,internet,canales,mensualidad);
 								Altice.getInstance().agregarPlan(nuevoPlan);
-								JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Info", JOptionPane.INFORMATION_MESSAGE);
 								clean();
 								
 							}else {
@@ -149,6 +148,8 @@ public class RegPlan extends JDialog {
 								ListPlanes.loadPlanes();
 								dispose();
 							}
+							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Info", JOptionPane.INFORMATION_MESSAGE);
+
 
 						}
 					}

@@ -60,12 +60,8 @@ public class ListCliente extends JDialog {
 							btnModificar.setEnabled(true);
 							btnListarFactura.setEnabled(true);
 							btnListarPlanes.setEnabled(true);
-							if(Altice.getInstance().getMisClientes().get(index).getCantFacturasActivas() == 0) {
-								btnEliminar.setEnabled(true);
-							}else {
-								btnEliminar.setEnabled(false);
-							}
-							
+							btnEliminar.setEnabled(true);
+
 							selecte = table.getValueAt(index, 0).toString();
 						}
 					}
@@ -128,16 +124,22 @@ public class ListCliente extends JDialog {
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 							Cliente cliente = Altice.getInstance().buscarClientePorCedula(selecte);
-							 int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Cliente: " + cliente.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
-							  if(option == JOptionPane.OK_OPTION){
-								Altice.getInstance().getMisClientes().remove(Altice.getInstance().indiceClientePorCedula(selecte));
-								JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-								loadClientes();
-							    btnEliminar.setEnabled(false);
-							    btnModificar.setEnabled(false);
-							    btnListarPlanes.setEnabled(false);
-							    btnListarFactura.setEnabled(false);
-							    selecte = "";
+							if(cliente.getCantFacturasActivas() == 0) { //Si el cliente tiene facturas activas desactiva el boton
+								JOptionPane.showMessageDialog(null, "Este cliente aun tiene facturas por pagar", "Error", JOptionPane.ERROR_MESSAGE);
+
+							}else {
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Cliente: " + cliente.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
+								if(option == JOptionPane.OK_OPTION){
+									Altice.getInstance().getMisClientes().remove(Altice.getInstance().indiceClientePorCedula(selecte));
+									JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+									loadClientes();
+								    btnEliminar.setEnabled(false);
+								    btnModificar.setEnabled(false);
+								    btnListarPlanes.setEnabled(false);
+								    btnListarFactura.setEnabled(false);
+								    selecte = "";
+							}
+						
 						}
 						
 					}

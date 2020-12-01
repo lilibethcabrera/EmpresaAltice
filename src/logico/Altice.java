@@ -31,13 +31,13 @@ public class Altice implements Serializable{
 		misFacturas = new ArrayList<>();
 		misEmpleados = new ArrayList<>();
 	}
-	public static Altice getInstance() {
+	public static Altice getInstance() {//Singelton
 		if(altice == null) {
 			altice = new Altice();
 		}
 		return altice;
 	}
-	public static void setInstance(Altice miAltice) {
+	public static void setInstance(Altice miAltice) {//Agregar el objeto altice al cargar
 		if(altice == null) {
 			altice = miAltice;
 		}
@@ -174,7 +174,9 @@ public class Altice implements Serializable{
 	public void agregarPlanCliente(Plan plan, String cedula) {
 		for(Cliente miCliente : misClientes) {
 			if(miCliente.getCedula().equalsIgnoreCase(cedula)){
-				miCliente.agregarPlan(plan);
+				Plan miPlan = new Plan(plan.getId(),plan.getPrecio_apertura(),plan.getMinutos(),plan.getVelocidad_internet(),
+						plan.getCanales(),plan.getMensualidad()); //Se crea una copia del plan
+				miCliente.agregarPlan(miPlan);
 				break;
 			}
 		}

@@ -1,0 +1,8 @@
+Factura Id.2
+Fecha de Facturacion: 01/12/2020
+---------------------------------------------
+A nombre de: h | Cedula: 1
+Plan de ID: 0
+---------------------------------------------
+Monto: 5000.0
+Estado Factura: Pagada

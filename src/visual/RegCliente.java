@@ -111,7 +111,6 @@ public class RegCliente extends JDialog {
 								Date fechaDeNacimiento = (Date) spnFechaNacimiento.getValue();
 								Cliente miCliente = new Cliente(cedula,nombre,direccion, fechaDeNacimiento);
 								Altice.getInstance().agregarCliente(miCliente);
-								JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 								clean();
 							}else {
 								cliente.setCedula(txtCedula.getText());
@@ -122,6 +121,8 @@ public class RegCliente extends JDialog {
 								ListCliente.loadClientes();
 								dispose();
 							}
+							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+
 
 							
 						}

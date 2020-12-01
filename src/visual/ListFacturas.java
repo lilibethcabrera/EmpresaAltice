@@ -99,6 +99,8 @@ public class ListFacturas extends JDialog {
 							selecte="";
 							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							loadFacturas();
+							ListCliente.loadClientes();
+							PlanesCliente.loadPlanes();
 						}
 						
 					}
@@ -112,7 +114,6 @@ public class ListFacturas extends JDialog {
 							try {
 								Altice.getInstance().imprimirFactura(factu);
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -135,6 +136,8 @@ public class ListFacturas extends JDialog {
 			}
 		}
 		loadFacturas();
+		ListCliente.loadClientes();
+		PlanesCliente.loadPlanes();
 	}
 	 //{"Id","Fecha de Facturacion","Monto","Id de Plan", "Estado"};
 	public static void loadFacturas() {
