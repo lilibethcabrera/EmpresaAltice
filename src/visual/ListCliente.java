@@ -61,7 +61,6 @@ public class ListCliente extends JDialog {
 							btnListarFactura.setEnabled(true);
 							btnListarPlanes.setEnabled(true);
 							btnEliminar.setEnabled(true);
-
 							selecte = table.getValueAt(index, 0).toString();
 						}
 					}

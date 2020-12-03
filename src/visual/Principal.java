@@ -173,6 +173,16 @@ public class Principal extends JFrame {
 		});
 		mnFactura.add(mntmGenerarReporte);
 		
+		JMenuItem mntmVisualizarGanancias = new JMenuItem("Visualizar Ganancias");
+		mntmVisualizarGanancias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerGrafico grafico = new VerGrafico();
+				grafico.setModal(true);
+				grafico.setVisible(true);
+			}
+		});
+		mnFactura.add(mntmVisualizarGanancias);
+		
 		JMenu mnPlanes = new JMenu("Planes");
 		menuBar.add(mnPlanes);
 		
@@ -198,8 +208,8 @@ public class Principal extends JFrame {
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 	}
 
 }

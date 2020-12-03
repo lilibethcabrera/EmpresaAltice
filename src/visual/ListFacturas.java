@@ -100,7 +100,7 @@ public class ListFacturas extends JDialog {
 							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							loadFacturas();
 							ListCliente.loadClientes();
-							PlanesCliente.loadPlanes();
+							VerGrafico.createBarChart();
 						}
 						
 					}
@@ -137,7 +137,6 @@ public class ListFacturas extends JDialog {
 		}
 		loadFacturas();
 		ListCliente.loadClientes();
-		PlanesCliente.loadPlanes();
 	}
 	 //{"Id","Fecha de Facturacion","Monto","Id de Plan", "Estado"};
 	public static void loadFacturas() {

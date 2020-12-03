@@ -31,12 +31,13 @@ public class PlanesCliente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private static DefaultTableModel model;
 	private static Object[] fila;
-	private JTable table;
+	private static JTable table;
 	private JButton btnCancelar;
 	private JButton btnFacturar;
 	private JButton btnEliminar;
 	private String selecte = "";
 	private static Cliente miCliente;
+	private int index;
 
 	public PlanesCliente(Cliente cliente) {
 		miCliente = cliente;
@@ -59,11 +60,10 @@ public class PlanesCliente extends JDialog {
 				table.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						int index = table.getSelectedRow();
+						index = table.getSelectedRow();
 						if(index >= 0) {
 							btnFacturar.setEnabled(true);
 							btnEliminar.setEnabled(true);
-
 							selecte = table.getValueAt(index, 0).toString();
 						}
 					}
@@ -86,7 +86,7 @@ public class PlanesCliente extends JDialog {
 				btnFacturar.setEnabled(false);
 				btnFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Plan plan = miCliente.buscarPlanPorId(selecte);
+						Plan plan = miCliente.getMisPlanes().get(index);
 						int mesActual = Calendar.getInstance().get(Calendar.MONTH) + 1;
 						if(plan.getUltimoMesFacturado() ==  mesActual) {
 							JOptionPane.showMessageDialog(null, "Ese plan ya fue facturado este mes", "Error!", JOptionPane.ERROR_MESSAGE);
