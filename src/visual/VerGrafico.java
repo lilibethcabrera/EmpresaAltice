@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -20,6 +21,7 @@ import logico.Altice;
 import logico.Factura;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class VerGrafico extends JDialog {
 
@@ -27,11 +29,14 @@ public class VerGrafico extends JDialog {
 	private static JPanel panelGrafico = new JPanel();
 
 	public VerGrafico() {
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VerGrafico.class.getResource("/Imagenes/bill(1).png")));
 		setTitle("Ganancias Por Mes");
 		createBarChart();
 		setBounds(100, 100, 666, 479);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -41,6 +46,7 @@ public class VerGrafico extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.LIGHT_GRAY);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -56,6 +62,7 @@ public class VerGrafico extends JDialog {
 		}
 		
 	}
+	///Crea el grafico de barras
 	public static void createBarChart() {
 		float [] cantActmeses = new float[12];
 		getCantMonth(cantActmeses);
@@ -73,6 +80,7 @@ public class VerGrafico extends JDialog {
 		panelGrafico.add(linePanel);
 		linePanel.setLayout(new BorderLayout(0, 0));
 	}
+	//Obtiene la cantidad de ganancias por mese
 	private static void getCantMonth(float[] mes) {
 		Calendar date = Calendar.getInstance();
 		for(int i = 0; i < 12 ; i ++) {

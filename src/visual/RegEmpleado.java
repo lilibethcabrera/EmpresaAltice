@@ -206,13 +206,12 @@ public class RegEmpleado extends JDialog {
 									JOptionPane.showMessageDialog(null, "Seleccione un puesto", "Error", JOptionPane.ERROR_MESSAGE);
 								}else {
 									if(empleado == null) {
-										Altice.getInstance().agregarEmpleado(administrativo());
-										JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-										
+										Altice.getInstance().agregarEmpleado(administrativo());										
 										clean();
 									}else {
 										Altice.getInstance().modificarEmpleado(administrativo(), cedulaVieja);
 										ListEmpleado.loadEmpleados();
+										JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 										dispose();
 									}
 								}
@@ -228,12 +227,13 @@ public class RegEmpleado extends JDialog {
 									}else {
 										Altice.getInstance().modificarEmpleado(comercial(), cedulaVieja);
 										ListEmpleado.loadEmpleados();
+										JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 										dispose();
 									}
-									JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 								}
-								
+
 							}	
+							JOptionPane.showMessageDialog(null, "Operación Satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 				});

@@ -71,7 +71,8 @@ public class Altice implements Serializable{
 	public void agregarFactura(Factura factura) {
 		misFacturas.add(factura);
 	}
-
+	
+	//Retorna un empleado y recibe su cedula como parametro para buscar
 	public Empleado buscarEmpleadoPorCedula(String cedula) {
 		Empleado miEmpleado = null;
 		
@@ -84,7 +85,7 @@ public class Altice implements Serializable{
 		
 		return miEmpleado;
 	}
-	
+	//Retorna un Cliente y recibe su cedula como parametro para buscar
 	public Cliente buscarClientePorCedula(String cedula) {
 		Cliente miCliente = null;
 		
@@ -97,6 +98,7 @@ public class Altice implements Serializable{
 		
 		return miCliente;
 	}
+	//Retorna un Plan y recibe su id como parametro para buscar
 	public Plan buscarPlanPorId(String Id) {
 		Plan miPlan = null;
 		
@@ -109,6 +111,8 @@ public class Altice implements Serializable{
 		
 		return miPlan;
 	}
+	//Retorna un factura y recibe su id como parametro para buscar
+
 	public Factura buscarFacturaPorId(String id) {
 		
 		for(Factura factura : misFacturas) {
@@ -119,6 +123,9 @@ public class Altice implements Serializable{
 		
 		return null;
 	}
+	//Retorna el indice del cliente y recibe su cedula como parametro para buscar
+	//Retorna -1 si no se encuentra
+
 	public int indiceClientePorCedula(String selecte) {
 		int i;
 		
@@ -130,21 +137,28 @@ public class Altice implements Serializable{
 		return -1;
 
 	}
+	//Modifica el cliente, recibe su cedula vieja para buscar y un objeto Cliente, que sera el nuevo cliente
 	public void modificarCliente(Cliente client, String cedulaVieja) {
 		int aux = indiceClientePorCedula(cedulaVieja);
 		misClientes.set(aux, client);
 	
 		
 	}
+	
+	//Modifica el empleado, recibe su cedula vieja para buscar y un objeto Empleado, que sera el nuevo empleado
 	public void modificarEmpleado(Empleado empleado, String cedulaVieja) {
 		int aux = indiceEmpleadoPorCedula(cedulaVieja);
 		misEmpleados.set(aux, empleado);
 		
 	}
+	///Modifica un plan ya existen, recibe un objeto Plan con los nuevos datos
 	public void modificarPlan(Plan plan) {
 		int aux = indicePlanPorId(plan.getId());
 		misPlanes.set(aux, plan);
 	}
+	
+	//Retorna el indice del empleado y recibe su cedula como parametro para buscar
+	//Retorna -1 si no se encuentra
 	public int indiceEmpleadoPorCedula(String selecte) {
 		int i;
 		for(i = 0; i < misEmpleados.size(); i++) {
@@ -154,6 +168,8 @@ public class Altice implements Serializable{
 		}
 		return -1;
 	}
+	//Retorna el indice del plan y recibe su id como parametro para buscar
+	//Retorna -1 si no se encuentra
 	public int indicePlanPorId(String selecte) {
 		int i;
 		for(i = 0; i < misPlanes.size(); i++) {
@@ -163,15 +179,14 @@ public class Altice implements Serializable{
 		}
 		return -1;
 	}
+	///Asigna una factura al cliente que coincida con la cedula recibida
 	public void agregarFacturaCliente(String cedula, Factura factura) {
-		for(Cliente miCliente : misClientes) {
-			if(miCliente.getCedula().equalsIgnoreCase(cedula)){
-				miCliente.agregarFactura(factura);
-				break;
-			}
-		}
+		Cliente cliente = buscarClientePorCedula(cedula);
+		cliente.agregarFactura(factura);
 	}
+	///Asigna un plan al cliente que coincida con la cedula recibida. El plan se crea como un nuevo objeto
 	public void agregarPlanCliente(Plan plan, String cedula) {
+		
 		for(Cliente miCliente : misClientes) {
 			if(miCliente.getCedula().equalsIgnoreCase(cedula)){
 				Plan miPlan = new Plan(plan.getId(),plan.getPrecio_apertura(),plan.getMinutos(),plan.getVelocidad_internet(),
@@ -181,6 +196,7 @@ public class Altice implements Serializable{
 			}
 		}
 	}
+	///Paga la factura con el id recibido
 	public void pagarFactura(String selecte) {
 		for(Factura factura : misFacturas) {
 			if(factura.getId().equalsIgnoreCase(selecte)) {
@@ -189,6 +205,7 @@ public class Altice implements Serializable{
 			}
 		}
 	}
+	///Genera una factura para el cliente y el plan recibido y lo retorna
 	public Factura facturar(Plan plan, Cliente cliente) {
 		String id_actual = Integer.toString(Integer.parseInt(misFacturas.get(misFacturas.size() - 1).getId())+1);
 		Factura factura = new Factura(id_actual, new Date(),plan.getMensualidad(),plan,cliente,false);
@@ -196,15 +213,19 @@ public class Altice implements Serializable{
 		misFacturas.add(factura);
 		return factura;
 	}
+	//Imprime un archivo txt la factura enviada por parametros
 	public void imprimirFactura(Factura factura) throws IOException {
-		String directorio = new File(".").getCanonicalPath() + "\\src\\facturas\\"+"factura-" + factura.getId() +".txt";
+		//GetCanonicalPath, obtiene la direccion del proyecto, y se usa esta direccion para guardas las facturas imprimidas
+		String directorio = new File(".").getCanonicalPath() + "\\src\\facturas\\factura-" + factura.getId() +".txt";
 		File fout = new File(directorio);
+		
+		///Se crea y se maneja los archivos de texto
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		
 		bw.write("Factura Id." + factura.getId());
-		bw.newLine();
+		bw.newLine();//Se agrega  un salto de linea al archivo
 		bw.write("Fecha de Facturacion: " + format.format(factura.getFecha_facturacion()));
 		bw.newLine();
 		bw.write("---------------------------------------------");

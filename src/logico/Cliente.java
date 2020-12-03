@@ -28,6 +28,7 @@ public class Cliente extends Persona {
 	public void agregarFactura(Factura nuevaFactura) {
 		misFacturas.add(nuevaFactura);
 	}
+	//Recibe un id y retorna una factura
 	public Factura buscarFacturaPorId(String id) {
 		Factura miFactura = null;
 		
@@ -40,6 +41,7 @@ public class Cliente extends Persona {
 		
 		return miFactura;
 	}
+	//Recibe un id y retorna el plan
 	public Plan buscarPlanPorId(String Id) {
 		Plan miPlan = null;
 		
@@ -52,6 +54,7 @@ public class Cliente extends Persona {
 		
 		return miPlan;
 	}
+	///Retorna la cantidad de facturas no pagadas
 	public int getCantFacturasActivas() {
 		int cantidadFacturas = 0;
 		
@@ -63,6 +66,8 @@ public class Cliente extends Persona {
 		
 		return cantidadFacturas;
 	}
+	//Retorna el indice del plan recibido por id
+
 	public int indicePlanPorId(String selecte) {
 		int i;
 		for(i = 0; i < misPlanes.size(); i++) {
@@ -72,6 +77,7 @@ public class Cliente extends Persona {
 		}
 		return -1;
 	}
+	//Paga la factura que coincida con el id enviado por paramaetros
 	public void pagarFactura(String selecte) {
 		for(Factura factura : misFacturas) {
 			if(factura.getId().equalsIgnoreCase(selecte)) {
